@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views import View
 
+from mobilesilentapp.forms import ClassroomForm
 from mobilesilentapp.models import *
 
 # Create your views here.
@@ -24,9 +25,15 @@ class LoginPage(View):
         except LoginTable.DoesNotExist:
             # Handle case where login details do not exist
             return HttpResponse('''<script>alert("Invalid username or password");window.location='/'</script>''')    
+
 class Classroom(View):
     def get(self,request):
         return render(request,"administration/classroom.html")
+    def post(self,request):
+        form=ClassroomForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request,'administration/manageClassroom.html')
 class Timing(View):
     def get(self,request):
             return render(request,"administration/timing.html")
@@ -47,8 +54,27 @@ class Teacherregistration(View):
         return render(request,"administration/timetable.html") 
 class Admin_home(View):
     def get(self,request):
-        return render(request,"administration/admin_home.html")   
+        return render(request,"administration/admin_home.html")  
+     
 class ManageClassroom(View):
     def get(self,request):
-        return render(request,"administration/manageClassroom.html")
+        obj = ClassroomTable.objects.all()
+        return render(request,"administration/manageClassroom.html", {'val':obj})
+    
+class ManageTimetable(View):
+    def get(self,request):
+        obj = Timing.objects.all()
+        return render(request,"administration/manageTimetable.html")
+class Select_class(View):
+    def get(self,request):
+        obj = Timing.objects.all()
+        return render(request,"administration/select_class.html")
+class View_timetable(View):
+    def get(self,request):
+       
+        return render(request,"administration/View_timetable.html")
+class Timetable_new(View):
+    def get(self,request):
+        obj = Timing.objects.all()
+        return render(request,"administration/timetable_new.html")
 

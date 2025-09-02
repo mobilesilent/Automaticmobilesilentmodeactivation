@@ -66,29 +66,29 @@
   </style>
 </head>
 <body>
-    <table>
+<table>
         <thead>
       <tr>
-        <th>Department</th>
-        <th>ClassName</th>
-        <th>RoomNo</th>
+        <th>Day</th>
+        <th>from</th>
+        <th>To</th>
+        <th>Subject</th>
         <th>Action</th>
       </tr>
     </thead>
     <tbody>
-      {% for i in val %}
         <tr>
-            <td>{{ i.department }}</td>
-            <td>{{i.className}}</td>
-            <td>{{i.roomNumber}}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
             <td><button class="edit-btn">Edit</button><button class="delete-btn">Delete</button></td>
         </tr>
-        {% endfor %}
     </tbody>
     <tr>
         <td>
-    <a href="/classroom" class="add-btn">AddNew</a>
-</td>
+            <a href="Timetable" class="add-btn">AddNew</a>
+        </td>
 
     </tr>
     </table>

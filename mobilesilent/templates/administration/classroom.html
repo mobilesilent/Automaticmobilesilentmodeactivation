@@ -93,7 +93,8 @@
     <div>
         
     </div>
-    <form>
+    <form method="post">
+      {% csrf_token %}
       <div class="form-group">
         <label for="department">Department</label>
         <input type="text" id="department" name="department" required />

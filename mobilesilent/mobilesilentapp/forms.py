@@ -1,20 +1,20 @@
 from django.forms import ModelForm
-from mobilesilent.mobilesilentapp.models import Classroom, Complaints, Feedback, StudentTable, Timing
-from mobilesilent.mobilesilentapp.views import Teacherregistration
+from mobilesilentapp.models import ClassroomTable, Complaints, Feedback, StudentTable, TeacherTable, Timing
+
 
 
 class StuentForm(ModelForm):
     class Meta:
         model=StudentTable
-        fields=['username','password','name','admission_no','department','class','semester','email','phone']
+        fields=['name','admission_no','department','class_name','semester','email_id','phone_no']
 class ClassroomForm(ModelForm):
     class Meta:
-        model=Classroom
+        model=ClassroomTable
         fields=['department','className','roomNumber']
 class TimingForm(ModelForm):
     class Meta:
         model=Timing
-        fields=['day','from','to','subject']
+        fields=['day','start','to','subject']
 class FeedbackForm(ModelForm):
     class Meta:
         model=Feedback
@@ -25,5 +25,5 @@ class ComplaintsForm(ModelForm):
         fields=['complaints','reply']
 class TeacherregistrationForm(ModelForm):
     class Meta:
-        model=Teacherregistration
-        fields=['department','subject','phone']
+        model=TeacherTable
+        fields=['department','subject','phone_no']
