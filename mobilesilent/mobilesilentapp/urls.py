@@ -17,6 +17,10 @@ urlpatterns = [
     path('ManageClassroom',ManageClassroom.as_view(),name="ManageClassroom"),
     path('View_timetable',View_timetable.as_view(),name="View_timetable"),
     path('Select_class',Select_class.as_view(),name="Select_class"),
-    path('Timetable_new',Timetable_new.as_view(),name="Timetable_new")
+    path('Timetable_new',Timetable_new.as_view(),name="Timetable_new"),
+    path('Reply/<int:c_id>',Reply.as_view(),name="Reply"),
+    path('ManageDepartment',ManageDepartment.as_view(),name="ManageDepartment"),
+    path('ManageTeacher',ManageTeacher.as_view(),name="ManageTeacher"),
+    path('AddDepartment',AddDepartment.as_view(),name="AddDepartment")
 
 ]

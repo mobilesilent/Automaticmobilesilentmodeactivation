@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Complaint View</title>
-  <style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
     body {
       font-family: Arial, sans-serif;
       background-color: #f4f6f8;
@@ -48,37 +48,47 @@
     .reply-btn:hover {
       background-color: #218838;
     }
+    .add-btn {
+  background-color: #00ff0d;   
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.add-btn:hover {
+  background-color: #00b31e;
+}
+
   </style>
 </head>
 <body>
-
-  <h2 style="text-align:center;">Complaint View</h2>
-
-  <table>
-    <thead>
+    <table>
+        <thead>
       <tr>
-        <th>Username</th>
-        <th>Complaint</th>
-        <th>Date</th>
-        <th>Action</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Subject</th>
+        <th>Phone_No</th>
       </tr>
     </thead>
     <tbody>
       {% for i in val %}
-      <tr>
-        <td>{{ i.user_id.name }}</td>
-        <td>{{ i.complaints }}</td>
-        <td>{{i.date}}</td>
-        {% if i.reply %}
-        <td>{{i.reply}}</td>
-        {% else %}
-        <td><button onclick="window.location='Reply/{{i.id}}'">Reply</button></td>
-        {% endif %}
-      </tr>
+        <tr>
+            <td>{{ i.department }}</td>
+                <button class="delete-btn">Delete</button></td>
+        </tr>
         {% endfor %}
-      <!-- You can duplicate this <tr> block for more complaints -->
     </tbody>
-  </table>
+    <tr>
+        <td>
+    <a href="/Register" class="add-btn">AddNew</a>
+</td>
 
+    </tr>
+    </table>
 </body>
 </html>

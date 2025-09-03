@@ -26,11 +26,12 @@ class Timing(models.Model):
     to = models.TimeField(max_length=20,null=True,blank=True)
     start= models.TimeField(max_length=20,null=True,blank=True)
 
-class Feedback(models.Model):
+class FeedbackTable(models.Model):
     user_id = models.ForeignKey(StudentTable,on_delete=models.CASCADE,max_length=30,null=True,blank=True)
     feedback = models.CharField(max_length=30,null=True,blank=True)
+    date = models.DateTimeField(auto_now_add=True,null=True,blank=True)
 
-class Complaints(models.Model):
+class ComplaintTable(models.Model):
     user_id = models.ForeignKey(StudentTable,on_delete=models.CASCADE,null=True,blank=True)
     complaints = models.CharField(max_length=30,null=True,blank=True)
     date = models.DateTimeField(auto_now_add=True,null=True,blank=True)
@@ -43,3 +44,5 @@ class TeacherTable(models.Model):
     subject =models.CharField(max_length=30,null=True,blank=True)
     phone_no =models.BigIntegerField(null=True,blank=True)
 
+class DepartmentTable(models.Model):
+    department=models.CharField(max_length=30,null=True,blank=True)

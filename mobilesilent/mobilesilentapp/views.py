@@ -1,8 +1,8 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from django.views import View
 
-from mobilesilentapp.forms import ClassroomForm
+from mobilesilentapp.forms import ClassroomForm, DepartmentForm, ReplyForm, TeacherregistrationForm
 from mobilesilentapp.models import *
 
 # Create your views here.
@@ -42,10 +42,15 @@ class Register(View):
         return render(request,"administration/register.html")
 class Feedback(View):
     def get(self,request):
-        return render(request,"administration/feedback.html")
-class Complaints(View):
+        obj =FeedbackTable.objects.all()
+        print(obj)
+        return render(request,"administration/feedback.html",{'val':obj})
+    
+class Complaints(View): 
     def get(self,request):
-        return render(request,"administration/complaints.html")
+        obj = ComplaintTable.objects.all()
+        return render(request,"administration/complaints.html", {'val': obj})
+    
 class Timetable(View):
     def get(self,request):
         return render(request,"administration/timetable.html")
@@ -78,3 +83,45 @@ class Timetable_new(View):
         obj = Timing.objects.all()
         return render(request,"administration/timetable_new.html")
 
+class Reply(View):
+    def get(self,request,c_id):
+        c=ComplaintTable.objects.get(id=c_id)
+        return render(request, 'administration/replay.html')
+    def post(self, request, c_id):
+        c=ComplaintTable.objects.get(id=c_id)
+        d = ReplyForm(request.POST, instance=c)
+        if d.is_valid():
+            d.save()
+            return redirect('/Complaints')
+class TeacherRegistaraion(View):
+    def get(self,request):
+
+        return render(request,'teacherregistration.html',{'department','subject','phone_no'})
+    def post(self,request):
+        c=TeacherregistrationForm(request.POST,request.FILES)
+        if c.is_valid():
+            r=c.save(commit=False)
+            l=LoginPage.objects.create
+            r.LOGIN_ID=1
+            r.save()
+            return HttpResponse('''<script>alert('Registration Successful');window.location='/'</script>''')
+class ManageDepartment(View):
+    def get(self,request):
+        obj=DepartmentTable.objects.all()
+        return render(request,'administration/managedepartment.html',{'department': obj})
+    
+class ManageTeacher(View):
+    def get(self,request):
+        obj=TeacherTable.objects.all()
+        return render(request,'administration/manageteacher.html',{'department': obj})
+                
+class AddDepartment(View):
+    def get(self,request):
+        return render(request,'department.html')
+    def post(self,request):
+        c=DepartmentForm(request.POST)
+        if c.is_valid():
+            r=c.save(commit=False)
+            r.save()
+            return HttpResponse('''<script>alert('entered successfully');window.location='/'</script>''')
+        

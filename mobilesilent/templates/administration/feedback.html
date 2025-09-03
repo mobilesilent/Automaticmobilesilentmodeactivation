@@ -66,16 +66,13 @@
       </tr>
     </thead>
     <tbody>
+      {% for i in val %}
       <tr>
-        <td>2025-09-01</td>
-        <td>john_doe</td>
-        <td>Great improvements in classroom management system!</td>
+        <td>{{i.date}}
+        <td>{{i.user_id.name}}</td>
+        <td>{{i.feedback}}</td>
       </tr>
-      <tr>
-        <td>2025-08-30</td>
-        <td>jane_smith</td>
-        <td>Needs better support for evening classes scheduling.</td>
-      </tr>
+      {% endfor %}
       <!-- Add more rows as needed -->
     </tbody>
   </table>

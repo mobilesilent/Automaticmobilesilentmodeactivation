@@ -1,7 +1,5 @@
 from django.forms import ModelForm
-from mobilesilentapp.models import ClassroomTable, Complaints, Feedback, StudentTable, TeacherTable, Timing
-
-
+from mobilesilentapp.models import *
 
 class StuentForm(ModelForm):
     class Meta:
@@ -17,13 +15,22 @@ class TimingForm(ModelForm):
         fields=['day','start','to','subject']
 class FeedbackForm(ModelForm):
     class Meta:
-        model=Feedback
+        model=FeedbackTable
         fields=['feedback']
 class ComplaintsForm(ModelForm):
     class Meta:
-        model=Complaints
-        fields=['complaints','reply']
+        model=ComplaintTable
+        fields=['complaints']
 class TeacherregistrationForm(ModelForm):
     class Meta:
         model=TeacherTable
         fields=['department','subject','phone_no']
+
+class ReplyForm(ModelForm):
+    class Meta:
+        model=ComplaintTable
+        fields=['reply']
+class DepartmentForm(ModelForm):
+    class Meta:
+        model=DepartmentTable
+        fields=['department']

@@ -7,6 +7,7 @@ admin.site.register(LoginTable),
 admin.site.register(StudentTable),
 admin.site.register(ClassroomTable),
 admin.site.register(Timing),
-admin.site.register(Feedback),
-admin.site.register(Complaints),
+admin.site.register(FeedbackTable),
+admin.site.register(ComplaintTable),
 admin.site.register(TeacherTable)
+admin.site.register(DepartmentTable)
