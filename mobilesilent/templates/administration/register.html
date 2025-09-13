@@ -99,6 +99,7 @@ select {
         <tr>
             <td>UserName:</td>
             <td><input type="text" name="username" required></td>
+
         </tr>
         <tr>
             <td>password:</td>
@@ -112,11 +113,10 @@ select {
           <td>Department:</td>
           <td>
             <select name="department" required>
-              <option value="">Select</option>
-              <option value="Computer Science">Computer Science</option>
-              <option value="Commerce">Commerce</option>
-              <option value="Physics">Physics</option>
-              <option value="Mathematics">Mathematics</option>
+              <option value="">Select a department</option>
+              {% for i in dept %}
+              <option value="{{ i.id }}">{{ i.department }}</option>
+              {% endfor %}
             </select>
           </td>
         </tr>

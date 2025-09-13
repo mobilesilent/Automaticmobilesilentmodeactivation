@@ -73,16 +73,16 @@
       </tr>
     </thead>
     <tbody>
-      {% for i in val %}
+      {% for i in department %}
         <tr>
             <td>{{ i.department }}</td>
-            <td><button class="edit-btn">Edit</button><button class="delete-btn">Delete</button></td>
+              <td><a href="DeleteDepartment/{{ i.id }}" class="delete-btn">Delete</a></td>
         </tr>
         {% endfor %}
     </tbody>
     <tr>
         <td>
-    <a href="/classroom" class="add-btn">AddNew</a>
+    <a href="/AddDepartment" class="add-btn">AddNew</a>
 </td>
 
     </tr>

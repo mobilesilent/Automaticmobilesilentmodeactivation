@@ -33,13 +33,15 @@ class Classroom(View):
         form=ClassroomForm(request.POST)
         if form.is_valid():
             form.save()
-            return render(request,'administration/manageClassroom.html')
+            return redirect('ManageClassroom')
 class Timing(View):
     def get(self,request):
             return render(request,"administration/timing.html")
 class Register(View):
     def get(self,request):
-        return render(request,"administration/register.html")
+        obj = DepartmentTable.objects.all()
+        print(obj)
+        return render(request,"administration/register.html",{'dept':obj} )
 class Feedback(View):
     def get(self,request):
         obj =FeedbackTable.objects.all()
@@ -95,14 +97,14 @@ class Reply(View):
             return redirect('/Complaints')
 class TeacherRegistaraion(View):
     def get(self,request):
-
-        return render(request,'teacherregistration.html',{'department','subject','phone_no'})
+        department = DepartmentTable.objects.all()
+        return render(request,'teacherregistration.html',{'dept': department})
     def post(self,request):
         c=TeacherregistrationForm(request.POST,request.FILES)
         if c.is_valid():
             r=c.save(commit=False)
-            l=LoginPage.objects.create
-            r.LOGIN_ID=1
+            l=LoginPage.objects.create(username = request.POST.get('username'), password = request.POST.get('password'), usertype = 'teacher')
+            r.LOGIN_ID=l
             r.save()
             return HttpResponse('''<script>alert('Registration Successful');window.location='/'</script>''')
 class ManageDepartment(View):
@@ -113,15 +115,32 @@ class ManageDepartment(View):
 class ManageTeacher(View):
     def get(self,request):
         obj=TeacherTable.objects.all()
-        return render(request,'administration/manageteacher.html',{'department': obj})
+        department = DepartmentTable.objects.all()
+        return render(request,'administration/manageteacher.html',{'val': obj, 'dept': department})
+    def post(self,request):
+        form=TeacherregistrationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return render(request,'administration/manageteacher.html')
                 
 class AddDepartment(View):
     def get(self,request):
-        return render(request,'department.html')
+        return render(request,'administration/department.html')
     def post(self,request):
         c=DepartmentForm(request.POST)
         if c.is_valid():
             r=c.save(commit=False)
             r.save()
-            return HttpResponse('''<script>alert('entered successfully');window.location='/'</script>''')
-        
+            return HttpResponse('''<script>alert('entered successfully');window.location='Admin_home'</script>''')
+
+class DeleteDepartment(View):
+    def get(self, request, id):
+        obj = DepartmentTable.objects.get(id=id)     
+        obj.delete()
+        return redirect('ManageDepartment') 
+    
+class DeleteClassroom(View):
+    def get(self, request, id):
+        obj = ClassroomTable.objects.get(id=id)     
+        obj.delete()
+        return redirect('ManageClassroom')   

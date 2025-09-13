@@ -81,7 +81,7 @@
             <td>{{ i.department }}</td>
             <td>{{i.className}}</td>
             <td>{{i.roomNumber}}</td>
-            <td><button class="edit-btn">Edit</button><button class="delete-btn">Delete</button></td>
+            <td><a href="DeleteClassroom/{{ i.id }}" class="delete-btn">Delete</td>
         </tr>
         {% endfor %}
     </tbody>

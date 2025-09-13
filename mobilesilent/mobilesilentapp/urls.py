@@ -5,6 +5,7 @@ from django.urls import include, path
 from mobilesilentapp.views import *
 
 urlpatterns = [
+
     path('',LoginPage.as_view(),name="LoginPage"),
     path('classroom',Classroom.as_view(),name="Classroom"),
     path('Timing',Timing.as_view(),name="Timing"),
@@ -21,6 +22,8 @@ urlpatterns = [
     path('Reply/<int:c_id>',Reply.as_view(),name="Reply"),
     path('ManageDepartment',ManageDepartment.as_view(),name="ManageDepartment"),
     path('ManageTeacher',ManageTeacher.as_view(),name="ManageTeacher"),
-    path('AddDepartment',AddDepartment.as_view(),name="AddDepartment")
+    path('AddDepartment',AddDepartment.as_view(),name="AddDepartment"),
+    path('DeleteDepartment/<int:id>',DeleteDepartment.as_view(),name="DeleteDepartment"),
+    path('DeleteClassroom/<int:id>',DeleteClassroom.as_view(),name="DeleteClassroom"),
 
 ]
