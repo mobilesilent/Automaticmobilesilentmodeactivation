@@ -94,7 +94,8 @@ select {
 
   <div class="form-container">
     <h2>Teacher Registration</h2>
-    <form>
+    <form method="post">
+      {% csrf_token %}
       <table>
         <tr>
             <td>UserName:</td>
@@ -126,7 +127,7 @@ select {
         </tr>
         <tr>
           <td>Phone No:</td>
-          <td><input type="tel" name="phone" required></td>
+          <td><input type="tel" name="phone_no" required></td>
         </tr>
         <tr>
           <td colspan="2" style="text-align: center; padding-top: 20px;">

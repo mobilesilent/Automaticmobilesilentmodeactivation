@@ -38,7 +38,7 @@ class ComplaintTable(models.Model):
     reply = models.CharField(max_length=30,null=True,blank=True)
 
 class TeacherTable(models.Model):
-    login_id =models.ForeignKey(StudentTable,on_delete=models.CASCADE,null=True,blank=True)
+    login_id =models.ForeignKey(LoginTable,on_delete=models.CASCADE,null=True,blank=True)
     name =models.CharField(max_length=30,null=True,blank=True)
     department =models.CharField(max_length=30,null=True,blank=True)
     subject =models.CharField(max_length=30,null=True,blank=True)
