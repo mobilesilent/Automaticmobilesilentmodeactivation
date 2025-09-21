@@ -116,12 +116,12 @@ select {
             <select name="department" required>
               <option value="">Select a department</option>
               {% for i in dept %}
-              <option value="{{ i.id }}">{{ i.department }}</option>
+              <option value="{{ i.department }}">{{ i.department }}</option>
               {% endfor %}
             </select>
           </td>
         </tr>
-         <tr>
+        <tr>
           <td>Email ID:</td>
           <td><input type="email" name="email" required></td>
         </tr>

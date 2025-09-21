@@ -165,7 +165,7 @@ class TeacherRegistaraion(View):
         c=TeacherregistrationForm(request.POST,request.FILES)
         if c.is_valid():
             r=c.save(commit=False)
-            l=LoginPage.objects.create(username = request.POST.get('username'), password = request.POST.get('password'), usertype = 'teacher')
+            l=LoginPage.objects.create(username = request.POST.get('username'), password = request.POST.get('password'), usertype = 'Pending')
             r.LOGIN_ID=l
             r.save()
             return HttpResponse('''<script>alert('Registration Successful');window.location='/'</script>''')
@@ -191,4 +191,23 @@ class DeleteClassroom(View):
     def get(self, request, id):
         obj = ClassroomTable.objects.get(id=id)     
         obj.delete()
-        return redirect('ManageClassroom')   
+        return redirect('ManageClassroom') 
+      
+class TeacherView(View):
+    def get(self, request):
+        c = TeacherTable.objects.all()
+        return render(request, 'administration/Teacher.html',{'c':c})
+    
+class AcceptTeacher(View):
+    def get(self, request, id):
+        c = TeacherTable.objects.get(id=id)
+        c.login_id.user_type = 'teacher'
+        c.login_id.save()
+        return redirect('/teacher')
+    
+class RejectTeacher(View):
+    def get(self, request, id):
+        c = TeacherTable.objects.get(id=id)
+        c.login_id.user_type = 'rejected'
+        c.login_id.save()
+        return redirect('/teacher')

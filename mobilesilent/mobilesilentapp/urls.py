@@ -16,6 +16,10 @@ urlpatterns = [
     path('Complaints',Complaints.as_view(),name="Complaints"),
     path('Reply/<int:c_id>',Reply.as_view(),name="Reply"),
     path('Feedback',Feedback.as_view(),name="Feedback"),
+    path('teacher',TeacherView.as_view(),name="teacher"),
+    path('acceptteacher/<int:id>', AcceptTeacher.as_view()),
+    path('rejectteacher/<int:id>', RejectTeacher.as_view()),
+
 
 
 
